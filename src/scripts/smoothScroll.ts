@@ -30,47 +30,21 @@ export function initSmoothScroll(solarSystem: SolarSystem) {
     { id: 'contact', planetIndex: 4 },   // Moon
   ];
 
-  // Track current section
-  let currentSection = 0;
-
-  // Scroll event listener
+  // Progressive scroll-based navigation
   lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-    // Calculate which section we're in
-    const windowHeight = window.innerHeight;
-    const sectionIndex = Math.floor(scroll / windowHeight);
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = scroll / documentHeight;
     
-    if (sectionIndex !== currentSection && sectionIndex < sections.length) {
-      currentSection = sectionIndex;
-      solarSystem.navigateToPlanet(sections[sectionIndex].planetIndex);
-    }
+    // Calculate smooth transition between planets based on scroll
+    const totalSections = sections.length;
+    const planetProgress = scrollProgress * (totalSections - 1);
+    const currentPlanetIndex = Math.floor(planetProgress);
+    const nextPlanetIndex = Math.min(currentPlanetIndex + 1, totalSections - 1);
+    const transitionProgress = planetProgress - currentPlanetIndex;
+    
+    // Interpolate between current and next planet
+    solarSystem.navigateToPlanetSmooth(currentPlanetIndex, nextPlanetIndex, transitionProgress);
   });
 
-  // Intersection Observer for more precise section detection
-  const observerOptions = {
-    root: null,
-    rootMargin: '-50% 0px -50% 0px',
-    threshold: 0,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const sectionId = entry.target.id;
-        const section = sections.find((s) => s.id === sectionId);
-        if (section) {
-          solarSystem.navigateToPlanet(section.planetIndex);
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Observe all sections
-  sections.forEach(({ id }) => {
-    const element = document.getElementById(id);
-    if (element) {
-      observer.observe(element);
-    }
-  });
-
-  return { lenis, observer };
+  return { lenis };
 }

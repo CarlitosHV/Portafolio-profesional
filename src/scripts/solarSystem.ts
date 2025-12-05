@@ -14,7 +14,8 @@ export class SolarSystem {
   constructor(canvas: HTMLCanvasElement) {
     // Scene setup
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x000000, 0.00025);
+    this.scene.background = new THREE.Color(0x000000);
+    this.scene.fog = new THREE.FogExp2(0x000000, 0.0001);
 
     // Camera setup
     this.camera = new THREE.PerspectiveCamera(
@@ -63,9 +64,11 @@ export class SolarSystem {
 
   private createStarfield() {
     const starGroups = [
-      { count: 3000, size: 0.5, color: 0xffffff },
+      { count: 5000, size: 0.3, color: 0xffffff },
+      { count: 3000, size: 0.6, color: 0xffffff },
       { count: 1500, size: 1.0, color: 0xaaaaff },
-      { count: 500, size: 1.5, color: 0xffffaa },
+      { count: 800, size: 1.5, color: 0xffffaa },
+      { count: 200, size: 2.0, color: 0xffcccc },
     ];
 
     starGroups.forEach(({ count, size, color }) => {
@@ -77,7 +80,7 @@ export class SolarSystem {
         const i3 = i * 3;
         
         // Random position in sphere
-        const radius = 300 + Math.random() * 200;
+        const radius = 300 + Math.random() * 300;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
         
@@ -85,9 +88,9 @@ export class SolarSystem {
         positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
         positions[i3 + 2] = radius * Math.cos(phi);
 
-        // Color variation
+        // Color variation with more diversity
         const c = new THREE.Color(color);
-        c.offsetHSL(0, 0, (Math.random() - 0.5) * 0.2);
+        c.offsetHSL((Math.random() - 0.5) * 0.1, (Math.random() - 0.5) * 0.3, (Math.random() - 0.5) * 0.3);
         colors[i3] = c.r;
         colors[i3 + 1] = c.g;
         colors[i3 + 2] = c.b;
@@ -100,7 +103,7 @@ export class SolarSystem {
         size,
         vertexColors: true,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.9,
         sizeAttenuation: true,
       });
 
@@ -112,52 +115,143 @@ export class SolarSystem {
 
   private createPlanets() {
     const planetData = [
-      { name: 'earth', position: [0, 0, 0], size: 8, color: 0x2233ff, emissive: 0x112244 },
-      { name: 'mars', position: [100, 20, -30], size: 6, color: 0xff4422, emissive: 0x441100 },
-      { name: 'jupiter', position: [200, -10, -50], size: 15, color: 0xffaa66, emissive: 0x442211 },
-      { name: 'saturn', position: [300, 15, -40], size: 12, color: 0xffdd88, emissive: 0x443322 },
-      { name: 'moon', position: [50, 10, 10], size: 4, color: 0xaaaaaa, emissive: 0x222222 },
+      { 
+        name: 'earth', 
+        position: [0, 0, 0], 
+        size: 8, 
+        color: 0x1a4d8f, 
+        emissive: 0x0a2545,
+        detail: { clouds: true, atmosphere: 0x4488ff }
+      },
+      { 
+        name: 'mars', 
+        position: [100, 20, -30], 
+        size: 6, 
+        color: 0xcc4422, 
+        emissive: 0x661100,
+        detail: { craters: true, atmosphere: 0xff6644 }
+      },
+      { 
+        name: 'jupiter', 
+        position: [200, -10, -50], 
+        size: 15, 
+        color: 0xd4a574, 
+        emissive: 0x8b6f47,
+        detail: { bands: true, atmosphere: 0xffcc99 }
+      },
+      { 
+        name: 'saturn', 
+        position: [300, 15, -40], 
+        size: 12, 
+        color: 0xe8d4a0, 
+        emissive: 0xa89968,
+        detail: { rings: true, atmosphere: 0xffeebb }
+      },
+      { 
+        name: 'moon', 
+        position: [50, 10, 10], 
+        size: 4, 
+        color: 0x888888, 
+        emissive: 0x333333,
+        detail: { craters: true, atmosphere: null }
+      },
     ];
 
-    planetData.forEach(({ name, position, size, color, emissive }) => {
-      const geometry = new THREE.SphereGeometry(size, 32, 32);
+    planetData.forEach(({ name, position, size, color, emissive, detail }) => {
+      const geometry = new THREE.SphereGeometry(size, 64, 64);
       const material = new THREE.MeshStandardMaterial({
         color,
         emissive,
-        emissiveIntensity: 0.3,
-        roughness: 0.7,
-        metalness: 0.3,
+        emissiveIntensity: 0.4,
+        roughness: 0.8,
+        metalness: 0.2,
       });
 
       const planet = new THREE.Mesh(geometry, material);
       planet.position.set(position[0], position[1], position[2]);
       
-      // Add glow effect
-      const glowGeometry = new THREE.SphereGeometry(size * 1.2, 32, 32);
-      const glowMaterial = new THREE.MeshBasicMaterial({
-        color,
-        transparent: true,
-        opacity: 0.2,
-        side: THREE.BackSide,
-      });
-      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-      planet.add(glow);
+      // Add atmospheric glow
+      if (detail.atmosphere) {
+        const glowGeometry = new THREE.SphereGeometry(size * 1.15, 32, 32);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+          color: detail.atmosphere,
+          transparent: true,
+          opacity: 0.25,
+          side: THREE.BackSide,
+        });
+        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+        planet.add(glow);
+      }
+
+      // Add surface details
+      if (detail.craters) {
+        // Add subtle surface variation for craters
+        const detailGeometry = new THREE.SphereGeometry(size * 1.01, 64, 64);
+        const detailMaterial = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(color).multiplyScalar(0.9),
+          transparent: true,
+          opacity: 0.3,
+          roughness: 0.9,
+        });
+        const details = new THREE.Mesh(detailGeometry, detailMaterial);
+        planet.add(details);
+      }
+
+      // Add clouds for Earth
+      if (detail.clouds) {
+        const cloudGeometry = new THREE.SphereGeometry(size * 1.05, 32, 32);
+        const cloudMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          transparent: true,
+          opacity: 0.2,
+          roughness: 1,
+        });
+        const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+        planet.add(clouds);
+      }
+
+      // Add bands for Jupiter
+      if (detail.bands) {
+        const bandGeometry = new THREE.SphereGeometry(size * 1.02, 64, 64);
+        const bandMaterial = new THREE.MeshStandardMaterial({
+          color: 0xb8956a,
+          transparent: true,
+          opacity: 0.4,
+          roughness: 0.7,
+        });
+        const bands = new THREE.Mesh(bandGeometry, bandMaterial);
+        planet.add(bands);
+      }
 
       this.planets.set(name, planet);
       this.scene.add(planet);
 
-      // Add Saturn's rings
-      if (name === 'saturn') {
-        const ringGeometry = new THREE.RingGeometry(size * 1.5, size * 2.5, 64);
-        const ringMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffddaa,
+      // Add Saturn's rings with more detail
+      if (detail.rings) {
+        const ringGeometry = new THREE.RingGeometry(size * 1.5, size * 2.5, 128);
+        const ringMaterial = new THREE.MeshStandardMaterial({
+          color: 0xc9b896,
           side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.6,
+          opacity: 0.7,
+          roughness: 0.8,
         });
         const ring = new THREE.Mesh(ringGeometry, ringMaterial);
         ring.rotation.x = Math.PI / 2.5;
         planet.add(ring);
+
+        // Add inner ring detail
+        const innerRingGeometry = new THREE.RingGeometry(size * 1.3, size * 1.45, 128);
+        const innerRingMaterial = new THREE.MeshStandardMaterial({
+          color: 0xa89968,
+          side: THREE.DoubleSide,
+          transparent: true,
+          opacity: 0.5,
+          roughness: 0.9,
+        });
+        const innerRing = new THREE.Mesh(innerRingGeometry, innerRingMaterial);
+        innerRing.rotation.x = Math.PI / 2.5;
+        planet.add(innerRing);
       }
     });
   }
@@ -243,6 +337,25 @@ export class SolarSystem {
     const offset = new THREE.Vector3(0, 5, distance);
     this.targetCameraPosition.copy(planet.position).add(offset);
     this.targetLookAt.copy(planet.position);
+  }
+
+  public navigateToPlanetSmooth(currentIndex: number, nextIndex: number, progress: number) {
+    const planetNames = ['earth', 'mars', 'jupiter', 'saturn', 'moon'];
+    const currentPlanet = this.planets.get(planetNames[currentIndex]);
+    const nextPlanet = this.planets.get(planetNames[nextIndex]);
+    
+    if (!currentPlanet || !nextPlanet) return;
+
+    // Calculate camera positions for both planets
+    const distance = 30;
+    const offset = new THREE.Vector3(0, 5, distance);
+    
+    const currentCamPos = new THREE.Vector3().copy(currentPlanet.position).add(offset);
+    const nextCamPos = new THREE.Vector3().copy(nextPlanet.position).add(offset);
+    
+    // Interpolate between positions
+    this.targetCameraPosition.lerpVectors(currentCamPos, nextCamPos, progress);
+    this.targetLookAt.lerpVectors(currentPlanet.position, nextPlanet.position, progress);
   }
 
   private animate = () => {
