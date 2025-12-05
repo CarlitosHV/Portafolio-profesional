@@ -1,16 +1,929 @@
 ---
-
+import "../styles/base.css";
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+
+		<!-- SEO Meta Tags -->
+		<title>Portafolio Profesional | Desarrollador Full Stack</title>
+		<meta
+			name="description"
+			content="Portafolio profesional de desarrollo de software especializado en C#, Java y JavaScript. Experiencia en aplicaciones web modernas y soluciones empresariales."
+		/>
+		<meta
+			name="keywords"
+			content="desarrollador, programador, C#, Java, JavaScript, full stack, portfolio"
+		/>
+		<meta name="author" content="Tu Nombre" />
+
+		<!-- Open Graph -->
+		<meta
+			property="og:title"
+			content="Portafolio Profesional | Desarrollador Full Stack"
+		/>
+		<meta
+			property="og:description"
+			content="Desarrollador especializado en C#, Java y JavaScript"
+		/>
+		<meta property="og:type" content="website" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			body {
+				font-family: "Space Grotesk", sans-serif;
+				overflow-x: hidden;
+			}
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-family: "Orbitron", sans-serif;
+			}
+			#three-canvas {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+				pointer-events: none;
+			}
+		</style>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="relative min-h-screen">
+		<!-- Three.js Canvas -->
+		<canvas id="three-canvas"></canvas>
+
+		<!-- Content -->
+		<div class="relative z-10">
+			<!-- Navigation -->
+			<nav
+				class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+				id="navbar"
+			>
+				<div class="liquid-glass border-b border-white/10">
+					<div class="container mx-auto px-6 py-4">
+						<div class="flex justify-between items-center">
+							<a
+								href="#hero"
+								class="text-2xl font-bold text-gradient-space"
+							>
+								&lt;Dev/&gt;
+							</a>
+							<div class="hidden md:flex gap-8">
+								<a
+									href="#skills"
+									class="text-gray-300 hover:text-space-400 transition-colors font-medium"
+									>Habilidades</a
+								>
+								<a
+									href="#projects"
+									class="text-gray-300 hover:text-cosmic-400 transition-colors font-medium"
+									>Proyectos</a
+								>
+								<a
+									href="#about"
+									class="text-gray-300 hover:text-nebula-400 transition-colors font-medium"
+									>Sobre mí</a
+								>
+								<a
+									href="#contact"
+									class="text-gray-300 hover:text-space-400 transition-colors font-medium"
+									>Contacto</a
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+			<!-- Hero Section -->
+			<section
+				id="hero"
+				class="min-h-screen flex items-center justify-center pt-20 px-6"
+			>
+				<div class="container mx-auto max-w-6xl">
+					<div class="text-center space-y-8">
+						<!-- Greeting Badge -->
+						<div class="inline-block animate-float">
+							<div class="liquid-glass px-6 py-3 rounded-full">
+								<span
+									class="text-nebula-400 font-semibold flex items-center gap-2"
+								>
+									<svg
+										class="w-5 h-5"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+										></path>
+									</svg>
+									Disponible para proyectos
+								</span>
+							</div>
+						</div>
+
+						<!-- Main Title -->
+						<h1
+							class="text-5xl md:text-7xl font-black leading-tight"
+						>
+							Desarrollador
+							<br />
+							<span class="text-gradient-space">Full Stack</span>
+						</h1>
+
+						<!-- Description -->
+						<p
+							class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+						>
+							Especializado en
+							<span class="text-space-400 font-bold">C#</span>,
+							<span class="text-cosmic-400 font-bold">Java</span> y
+							<span class="text-nebula-400 font-bold"
+								>JavaScript</span
+							>. Creando soluciones innovadoras que trascienden
+							los límites del código.
+						</p>
+
+						<!-- CTA Buttons -->
+						<div class="flex flex-wrap gap-4 justify-center pt-4">
+							<a
+								href="#projects"
+								class="liquid-glass cosmic-glow px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-space-600 to-cosmic-600"
+							>
+								Ver Proyectos
+							</a>
+							<a
+								href="#contact"
+								class="liquid-glass px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform duration-300"
+							>
+								Contactar
+							</a>
+						</div>
+
+						<!-- Scroll Indicator -->
+						<div class="pt-12 animate-float">
+							<div
+								class="w-6 h-10 border-2 border-space-400 rounded-full mx-auto relative"
+							>
+								<div
+									class="w-1.5 h-3 bg-space-400 rounded-full absolute top-2 left-1/2 -translate-x-1/2 animate-pulse"
+								>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Skills Section -->
+			<section id="skills" class="py-24 px-6">
+				<div class="container mx-auto max-w-6xl">
+					<!-- Section Header -->
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-5xl font-black mb-4">
+							<span class="text-gradient-space">Habilidades</span>
+							Técnicas
+						</h2>
+						<p class="text-xl text-gray-400">
+							Tecnologías y lenguajes con los que trabajo día a
+							día
+						</p>
+					</div>
+
+					<!-- Main Skills Grid -->
+					<div class="grid md:grid-cols-3 gap-8 mb-12">
+						<!-- C# Card -->
+						<div
+							class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
+						>
+							<div class="text-center space-y-4">
+								<div
+									class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-space-500 to-space-700 flex items-center justify-center cosmic-glow-purple animate-float"
+								>
+									<svg
+										class="w-12 h-12 text-white"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											d="M7 7h4v2H7V7zm0 4h4v2H7v-2zm0 4h4v2H7v-2zm6-8h4v2h-4V7zm0 4h4v2h-4v-2zm0 4h4v2h-4v-2zM5 21V3h14v18H5z"
+										></path>
+										<text
+											x="12"
+											y="16"
+											text-anchor="middle"
+											font-size="10"
+											font-weight="bold"
+											fill="white">#</text
+										>
+									</svg>
+								</div>
+								<h3 class="text-2xl font-bold">C#</h3>
+								<p class="text-gray-400">
+									Desarrollo de aplicaciones empresariales con
+									.NET, ASP.NET Core y Entity Framework
+								</p>
+								<div
+									class="flex flex-wrap gap-2 justify-center pt-2"
+								>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-space-500/30"
+										>.NET Core</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-space-500/30"
+										>ASP.NET</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-space-500/30"
+										>EF Core</span
+									>
+								</div>
+							</div>
+						</div>
+
+						<!-- Java Card -->
+						<div
+							class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
+						>
+							<div class="text-center space-y-4">
+								<div
+									class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-cosmic-500 to-cosmic-700 flex items-center justify-center cosmic-glow-cyan animate-float"
+									style="animation-delay: 0.2s;"
+								>
+									<svg
+										class="w-12 h-12 text-white"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											d="M2 21h18v-2H2v2zM20 8h-2V5h2c1.1 0 2 .9 2 2s-.9 2-2 2zm-2 2v5c0 2.21-1.79 4-4 4H8c-2.21 0-4-1.79-4-4v-5H2V5h14v5h2zm-6-5.5c0-.28-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5V5h4v-.5z"
+										></path>
+									</svg>
+								</div>
+								<h3 class="text-2xl font-bold">Java</h3>
+								<p class="text-gray-400">
+									Aplicaciones robustas con Spring Boot,
+									Hibernate y arquitecturas empresariales
+								</p>
+								<div
+									class="flex flex-wrap gap-2 justify-center pt-2"
+								>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-cosmic-500/30"
+										>Spring Boot</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-cosmic-500/30"
+										>Hibernate</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-cosmic-500/30"
+										>Maven</span
+									>
+								</div>
+							</div>
+						</div>
+
+						<!-- JavaScript Card -->
+						<div
+							class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
+						>
+							<div class="text-center space-y-4">
+								<div
+									class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-nebula-500 to-nebula-700 flex items-center justify-center cosmic-glow-pink animate-float"
+									style="animation-delay: 0.4s;"
+								>
+									<svg
+										class="w-12 h-12 text-white"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path d="M7 2v11h3v9l7-12h-4l4-8z"
+										></path>
+									</svg>
+								</div>
+								<h3 class="text-2xl font-bold">JavaScript</h3>
+								<p class="text-gray-400">
+									Desarrollo web moderno con React, Node.js y
+									frameworks contemporáneos
+								</p>
+								<div
+									class="flex flex-wrap gap-2 justify-center pt-2"
+								>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-nebula-500/30"
+										>React</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-nebula-500/30"
+										>Node.js</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-sm border border-nebula-500/30"
+										>TypeScript</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Additional Skills -->
+					<div class="liquid-glass rounded-2xl p-8">
+						<h4 class="text-2xl font-bold text-center mb-6">
+							Otras Tecnologías
+						</h4>
+						<div class="flex flex-wrap gap-3 justify-center">
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>Git & GitHub</span
+							>
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>SQL & NoSQL</span
+							>
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>Docker</span
+							>
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>REST APIs</span
+							>
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>Microservicios</span
+							>
+							<span
+								class="px-4 py-2 bg-stardust rounded-xl border border-white/10 hover:border-space-500/50 transition-colors"
+								>Azure & AWS</span
+							>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Projects Section -->
+			<section id="projects" class="py-24 px-6">
+				<div class="container mx-auto max-w-6xl">
+					<!-- Section Header -->
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-5xl font-black mb-4">
+							Proyectos <span class="text-gradient-cosmic"
+								>Destacados</span
+							>
+						</h2>
+						<p class="text-xl text-gray-400">
+							Algunos de los proyectos en los que he trabajado
+						</p>
+					</div>
+
+					<!-- Projects Grid -->
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+						<!-- Project 1 -->
+						<article
+							class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
+						>
+							<div
+								class="h-48 bg-gradient-to-br from-space-600 to-space-800 relative overflow-hidden"
+							>
+								<div
+									class="absolute inset-0 bg-cover bg-center opacity-50"
+									style="background-image: url('/project_placeholder.png');"
+								>
+								</div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-deepspace to-transparent"
+								>
+								</div>
+							</div>
+							<div class="p-6 space-y-4">
+								<h3 class="text-xl font-bold">
+									Sistema de Gestión Empresarial
+								</h3>
+								<p class="text-gray-400 text-sm">
+									Aplicación empresarial completa desarrollada
+									con C# y .NET Core para gestión de
+									inventarios y ventas.
+								</p>
+								<div class="flex flex-wrap gap-2">
+									<span
+										class="px-3 py-1 bg-gradient-to-r from-space-600 to-space-700 rounded-lg text-xs font-bold"
+										>C#</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>.NET Core</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>SQL Server</span
+									>
+								</div>
+								<div class="flex gap-2 pt-2">
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Ver Código
+									</a>
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Demo
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 2 -->
+						<article
+							class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
+						>
+							<div
+								class="h-48 bg-gradient-to-br from-cosmic-600 to-cosmic-800 relative overflow-hidden"
+							>
+								<div
+									class="absolute inset-0 bg-cover bg-center opacity-50"
+									style="background-image: url('/project_placeholder.png');"
+								>
+								</div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-deepspace to-transparent"
+								>
+								</div>
+							</div>
+							<div class="p-6 space-y-4">
+								<h3 class="text-xl font-bold">
+									API RESTful con Spring Boot
+								</h3>
+								<p class="text-gray-400 text-sm">
+									Backend robusto y escalable para aplicación
+									móvil con autenticación JWT y documentación
+									Swagger.
+								</p>
+								<div class="flex flex-wrap gap-2">
+									<span
+										class="px-3 py-1 bg-gradient-to-r from-cosmic-600 to-cosmic-700 rounded-lg text-xs font-bold"
+										>Java</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>Spring Boot</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>PostgreSQL</span
+									>
+								</div>
+								<div class="flex gap-2 pt-2">
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Ver Código
+									</a>
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Demo
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 3 -->
+						<article
+							class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
+						>
+							<div
+								class="h-48 bg-gradient-to-br from-nebula-600 to-nebula-800 relative overflow-hidden"
+							>
+								<div
+									class="absolute inset-0 bg-cover bg-center opacity-50"
+									style="background-image: url('/project_placeholder.png');"
+								>
+								</div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-deepspace to-transparent"
+								>
+								</div>
+							</div>
+							<div class="p-6 space-y-4">
+								<h3 class="text-xl font-bold">
+									Dashboard Interactivo React
+								</h3>
+								<p class="text-gray-400 text-sm">
+									Panel de control moderno con visualización
+									de datos en tiempo real y diseño responsive.
+								</p>
+								<div class="flex flex-wrap gap-2">
+									<span
+										class="px-3 py-1 bg-gradient-to-r from-nebula-600 to-nebula-700 rounded-lg text-xs font-bold"
+										>JavaScript</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>React</span
+									>
+									<span
+										class="px-3 py-1 bg-stardust rounded-lg text-xs border border-white/10"
+										>Chart.js</span
+									>
+								</div>
+								<div class="flex gap-2 pt-2">
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Ver Código
+									</a>
+									<a
+										href="#"
+										class="flex-1 liquid-glass px-4 py-2 rounded-lg text-center text-sm font-semibold hover:bg-white/5 transition-colors"
+									>
+										Demo
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section id="about" class="py-24 px-6">
+				<div class="container mx-auto max-w-6xl">
+					<div class="grid md:grid-cols-2 gap-12 items-start">
+						<!-- About Content -->
+						<div class="space-y-6">
+							<h2 class="text-4xl md:text-5xl font-black">
+								Sobre <span class="text-gradient-nebula"
+									>Mí</span
+								>
+							</h2>
+							<p class="text-xl text-gray-300 leading-relaxed">
+								Soy un desarrollador full stack apasionado por
+								crear soluciones tecnológicas que resuelven
+								problemas reales.
+							</p>
+							<p class="text-gray-400 leading-relaxed">
+								Con experiencia en desarrollo backend con <strong
+									class="text-space-400">C#</strong
+								> y <strong class="text-cosmic-400">Java</strong
+								>, y frontend con <strong
+									class="text-nebula-400">JavaScript</strong
+								> y frameworks modernos, me especializo en construir
+								aplicaciones escalables y mantenibles.
+							</p>
+							<p class="text-gray-400 leading-relaxed">
+								Mi enfoque está en escribir código limpio,
+								seguir las mejores prácticas y mantenerme
+								actualizado con las últimas tecnologías del
+								ecosistema de desarrollo.
+							</p>
+
+							<!-- Stats -->
+							<div class="grid grid-cols-2 gap-4 pt-4">
+								<div
+									class="liquid-glass rounded-xl p-6 text-center cosmic-glow-purple"
+								>
+									<div
+										class="text-4xl font-black text-space-400 mb-2"
+									>
+										5+
+									</div>
+									<div class="text-gray-400">
+										Años de Experiencia
+									</div>
+								</div>
+								<div
+									class="liquid-glass rounded-xl p-6 text-center cosmic-glow-cyan"
+								>
+									<div
+										class="text-4xl font-black text-cosmic-400 mb-2"
+									>
+										20+
+									</div>
+									<div class="text-gray-400">
+										Proyectos Completados
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Experience Timeline -->
+						<div class="liquid-glass rounded-2xl p-8">
+							<h3 class="text-2xl font-bold mb-8">Experiencia</h3>
+
+							<div class="space-y-8 relative pl-8">
+								<!-- Timeline Line -->
+								<div
+									class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-space-500 via-cosmic-500 to-nebula-500"
+								>
+								</div>
+
+								<!-- Experience 1 -->
+								<div class="relative">
+									<div
+										class="absolute -left-9 top-0 w-4 h-4 rounded-full bg-space-500 ring-4 ring-deepspace"
+									>
+									</div>
+									<div class="text-sm text-cosmic-400 mb-1">
+										2021 - Presente
+									</div>
+									<h4 class="text-lg font-bold mb-1">
+										Desarrollador Full Stack Senior
+									</h4>
+									<p class="text-gray-400 text-sm">
+										Desarrollo de aplicaciones empresariales
+										con C#, Java y JavaScript
+									</p>
+								</div>
+
+								<!-- Experience 2 -->
+								<div class="relative">
+									<div
+										class="absolute -left-9 top-0 w-4 h-4 rounded-full bg-cosmic-500 ring-4 ring-deepspace"
+									>
+									</div>
+									<div class="text-sm text-cosmic-400 mb-1">
+										2019 - 2021
+									</div>
+									<h4 class="text-lg font-bold mb-1">
+										Desarrollador Backend
+									</h4>
+									<p class="text-gray-400 text-sm">
+										APIs RESTful y microservicios con Spring
+										Boot y .NET
+									</p>
+								</div>
+
+								<!-- Experience 3 -->
+								<div class="relative">
+									<div
+										class="absolute -left-9 top-0 w-4 h-4 rounded-full bg-nebula-500 ring-4 ring-deepspace"
+									>
+									</div>
+									<div class="text-sm text-cosmic-400 mb-1">
+										2018 - 2019
+									</div>
+									<h4 class="text-lg font-bold mb-1">
+										Desarrollador Junior
+									</h4>
+									<p class="text-gray-400 text-sm">
+										Desarrollo web con JavaScript y
+										frameworks modernos
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section id="contact" class="py-24 px-6">
+				<div class="container mx-auto max-w-4xl">
+					<div class="text-center space-y-8">
+						<h2 class="text-4xl md:text-5xl font-black">
+							Trabajemos <span class="text-gradient-space"
+								>Juntos</span
+							>
+						</h2>
+						<p class="text-xl text-gray-300 max-w-2xl mx-auto">
+							¿Tienes un proyecto en mente? Me encantaría escuchar
+							sobre él. Contáctame y hablemos sobre cómo puedo
+							ayudarte.
+						</p>
+
+						<!-- Contact Buttons -->
+						<div class="flex flex-wrap gap-4 justify-center pt-4">
+							<a
+								href="mailto:tu@email.com"
+								class="liquid-glass cosmic-glow px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-space-600 to-cosmic-600 flex items-center gap-2"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+									></path>
+								</svg>
+								Enviar Email
+							</a>
+							<a
+								href="https://github.com/tuusuario"
+								target="_blank"
+								class="liquid-glass px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform duration-300 flex items-center gap-2"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+									></path>
+								</svg>
+								GitHub
+							</a>
+							<a
+								href="https://linkedin.com/in/tuusuario"
+								target="_blank"
+								class="liquid-glass px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform duration-300 flex items-center gap-2"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+									></path>
+								</svg>
+								LinkedIn
+							</a>
+						</div>
+
+						<!-- Contact Info -->
+						<div class="liquid-glass rounded-2xl p-8 mt-12">
+							<div class="grid md:grid-cols-3 gap-8">
+								<div class="text-center">
+									<div class="mb-3">
+										<svg
+											class="w-10 h-10 mx-auto text-space-400"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+											></path>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+											></path>
+										</svg>
+									</div>
+									<div class="font-bold mb-2">Ubicación</div>
+									<div class="text-gray-400">
+										Tu Ciudad, País
+									</div>
+								</div>
+								<div class="text-center">
+									<div class="mb-3">
+										<svg
+											class="w-10 h-10 mx-auto text-cosmic-400"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+											></path>
+										</svg>
+									</div>
+									<div class="font-bold mb-2">Email</div>
+									<div class="text-gray-400">
+										tu@email.com
+									</div>
+								</div>
+								<div class="text-center">
+									<div class="mb-3">
+										<svg
+											class="w-10 h-10 mx-auto text-nebula-400"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+											></path>
+										</svg>
+									</div>
+									<div class="font-bold mb-2">
+										Disponibilidad
+									</div>
+									<div class="text-nebula-400 font-semibold">
+										Disponible para proyectos
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer class="border-t border-white/10 py-8 px-6">
+				<div class="container mx-auto max-w-6xl">
+					<div class="text-center space-y-2">
+						<p
+							class="text-gray-400 flex items-center justify-center gap-2"
+						>
+							Diseñado y desarrollado con
+							<svg
+								class="w-5 h-5 text-cosmic-400 inline"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+									clip-rule="evenodd"></path>
+							</svg>
+							usando Astro y Tailwind CSS
+						</p>
+						<p class="text-gray-500 text-sm">
+							© 2024 Tu Nombre. Todos los derechos reservados.
+						</p>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			import { SolarSystem } from "../scripts/solarSystem";
+			import { initSmoothScroll } from "../scripts/smoothScroll";
+
+			// Initialize Three.js Solar System
+			const canvas = document.getElementById(
+				"three-canvas",
+			) as HTMLCanvasElement;
+			if (canvas) {
+				const solarSystem = new SolarSystem(canvas);
+
+				// Initialize smooth scroll with solar system
+				const { lenis } = initSmoothScroll(solarSystem);
+
+				// Smooth scroll for navigation links
+				document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+					anchor.addEventListener("click", function (e) {
+						e.preventDefault();
+						const href = (this as HTMLAnchorElement).getAttribute(
+							"href",
+						);
+						if (href) {
+							const target = document.querySelector(href);
+							if (target) {
+								lenis.scrollTo(target as HTMLElement);
+							}
+						}
+					});
+				});
+
+				// Navbar scroll effect
+				const navbar = document.getElementById("navbar");
+				if (navbar) {
+					window.addEventListener("scroll", () => {
+						if (window.scrollY > 100) {
+							navbar.style.background = "rgba(10, 14, 39, 0.95)";
+						} else {
+							navbar.style.background = "transparent";
+						}
+					});
+				}
+			}
+		</script>
 	</body>
 </html>

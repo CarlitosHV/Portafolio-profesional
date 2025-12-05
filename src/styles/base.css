@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-deepspace text-white;
+    }
+}
+
+@layer components {
+
+    /* Enhanced Liquid Glass Effect */
+    .liquid-glass {
+        @apply relative overflow-hidden;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.5),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+            inset 0 -1px 0 0 rgba(255, 255, 255, 0.1),
+            0 0 40px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Top highlight for glass effect */
+    .liquid-glass::before {
+        content: '';
+        @apply absolute top-0 left-0 right-0 h-1/2 opacity-100 pointer-events-none;
+        background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%);
+    }
+
+    /* Shimmer effect on hover */
+    .liquid-glass::after {
+        content: '';
+        @apply absolute -inset-full opacity-0 pointer-events-none;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent);
+        transform: skewX(-20deg);
+        transition: opacity 0.6s;
+    }
+
+    .liquid-glass:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.6),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+            inset 0 -1px 0 0 rgba(255, 255, 255, 0.15),
+            0 0 60px rgba(99, 102, 241, 0.4);
+    }
+
+    .liquid-glass:hover::after {
+        @apply opacity-100;
+        animation: shimmer 1.5s linear infinite;
+    }
+
+    /* Cosmic Glow */
+    .cosmic-glow {
+        box-shadow:
+            0 0 20px rgba(99, 102, 241, 0.5),
+            0 0 40px rgba(99, 102, 241, 0.3),
+            0 0 60px rgba(99, 102, 241, 0.1);
+    }
+
+    .cosmic-glow-purple {
+        box-shadow:
+            0 0 20px rgba(168, 85, 247, 0.5),
+            0 0 40px rgba(168, 85, 247, 0.3);
+    }
+
+    .cosmic-glow-cyan {
+        box-shadow:
+            0 0 20px rgba(34, 211, 238, 0.5),
+            0 0 40px rgba(34, 211, 238, 0.3);
+    }
+
+    .cosmic-glow-pink {
+        box-shadow:
+            0 0 20px rgba(236, 72, 153, 0.5),
+            0 0 40px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Star Field Animation */
+    .stars {
+        @apply absolute inset-0 pointer-events-none;
+    }
+
+    .star {
+        @apply absolute w-1 h-1 bg-white rounded-full;
+        animation: twinkle 3s ease-in-out infinite;
+    }
+}
+
+@layer utilities {
+    .text-gradient-space {
+        @apply bg-gradient-to-r from-space-400 via-cosmic-400 to-nebula-400 bg-clip-text text-transparent;
+    }
+
+    .text-gradient-cosmic {
+        @apply bg-gradient-to-r from-cosmic-400 to-cosmic-600 bg-clip-text text-transparent;
+    }
+
+    .text-gradient-nebula {
+        @apply bg-gradient-to-r from-nebula-400 to-space-500 bg-clip-text text-transparent;
+    }
+}
