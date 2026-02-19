@@ -1,5 +1,6 @@
 ---
 import "../styles/base.css";
+import "../styles/home.css";
 ---
 
 <!doctype html>
@@ -10,7 +11,6 @@ import "../styles/base.css";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- SEO Meta Tags -->
 		<title>Portafolio Profesional | Desarrollador Full Stack</title>
 		<meta
 			name="description"
@@ -22,7 +22,6 @@ import "../styles/base.css";
 		/>
 		<meta name="author" content="Tu Nombre" />
 
-		<!-- Open Graph -->
 		<meta
 			property="og:title"
 			content="Portafolio Profesional | Desarrollador Full Stack"
@@ -39,109 +38,82 @@ import "../styles/base.css";
 			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-
-		<style>
-			body {
-				font-family: "Space Grotesk", sans-serif;
-				overflow-x: hidden;
-			}
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-family: "Orbitron", sans-serif;
-			}
-			#three-canvas {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 0;
-				pointer-events: none;
-			}
-		</style>
 	</head>
 	<body class="relative min-h-screen">
-		<!-- Three.js Canvas -->
 		<canvas id="three-canvas"></canvas>
 
-		<!-- Content -->
 		<div class="relative z-10">
-			<!-- Navigation -->
 			<nav
-				class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+				class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300"
 				id="navbar"
 			>
-				<div class="liquid-glass border-b border-white/10">
-					<div class="container mx-auto px-6 py-4">
-						<div class="flex justify-between items-center">
+				<div
+					class="liquid-glass rounded-full px-6 py-3 border border-white/10 shadow-lg"
+				>
+					<div class="flex items-center gap-6">
+						<a
+							href="#hero"
+							class="text-xl font-bold text-gradient-space hidden sm:block"
+						>
+							&lt;C/&gt;
+						</a>
+						<div class="flex items-center gap-4 sm:gap-6">
 							<a
-								href="#hero"
-								class="text-2xl font-bold text-gradient-space"
+								href="#skills"
+								class="text-gray-300 hover:text-space-400 transition-colors text-sm font-medium"
+								data-i18n="nav.skills">Habilidades</a
 							>
-								&lt;Carlos/&gt;
-							</a>
-							<div class="flex items-center gap-8">
-								<div class="hidden md:flex gap-8">
-									<a
-										href="#skills"
-										class="text-gray-300 hover:text-space-400 transition-colors font-medium"
-										data-i18n="nav.skills">Habilidades</a
-									>
-									<a
-										href="#projects"
-										class="text-gray-300 hover:text-cosmic-400 transition-colors font-medium"
-										data-i18n="nav.projects">Proyectos</a
-									>
-									<a
-										href="#about"
-										class="text-gray-300 hover:text-nebula-400 transition-colors font-medium"
-										data-i18n="nav.about">Sobre mí</a
-									>
-									<a
-										href="#contact"
-										class="text-gray-300 hover:text-space-400 transition-colors font-medium"
-										data-i18n="nav.contact">Contacto</a
-									>
-								</div>
+							<a
+								href="#projects"
+								class="text-gray-300 hover:text-cosmic-400 transition-colors text-sm font-medium"
+								data-i18n="nav.projects">Proyectos</a
+							>
+							<a
+								href="#game"
+								class="text-gray-300 hover:text-pink-400 transition-colors text-sm font-medium"
+								data-i18n="nav.game">Juegos</a
+							>
+							<a
+								href="#about"
+								class="text-gray-300 hover:text-nebula-400 transition-colors text-sm font-medium"
+								data-i18n="nav.about">Sobre mí</a
+							>
+							<a
+								href="#contact"
+								class="text-gray-300 hover:text-space-400 transition-colors text-sm font-medium hidden md:block"
+								data-i18n="nav.contact">Contacto</a
+							>
 
-								<!-- Language Switcher -->
-								<button
-									id="lang-toggle"
-									class="liquid-glass px-3 py-1 rounded-lg text-sm font-bold hover:bg-white/10 transition-colors flex items-center gap-2"
+							<button
+								id="lang-toggle"
+								class="bg-white/5 px-2 py-1 rounded-full text-xs font-bold hover:bg-white/10 transition-colors flex items-center gap-1 border border-white/10"
+							>
+								<span id="lang-text">ES</span>
+								<svg
+									class="w-3 h-3"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
 								>
-									<span id="lang-text">ES</span>
-									<svg
-										class="w-4 h-4"
-										fill="none"
-										stroke="currentColor"
-										viewBox="0 0 24 24"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-										></path>
-									</svg>
-								</button>
-							</div>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+									></path>
+								</svg>
+							</button>
 						</div>
 					</div>
 				</div>
 			</nav>
 
-			<!-- Hero Section -->
 			<section
 				id="hero"
 				class="min-h-screen flex items-center justify-center pt-20 px-6"
 			>
 				<div class="container mx-auto max-w-6xl">
 					<div class="text-center space-y-8">
-						<!-- Greeting Badge -->
 						<div class="inline-block animate-float">
 							<div class="liquid-glass px-6 py-3 rounded-full">
 								<span
@@ -168,7 +140,6 @@ import "../styles/base.css";
 						</div>
 					</div>
 
-					<!-- Main Title -->
 					<h1
 						class="text-2xl md:text-4xl lg:text-5xl font-black leading-tight mx-auto max-w-3xl"
 					>
@@ -179,7 +150,6 @@ import "../styles/base.css";
 						>
 					</h1>
 
-					<!-- Description -->
 					<p
 						class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
 						data-i18n="hero.description"
@@ -192,7 +162,6 @@ import "../styles/base.css";
 						creando soluciones creativas para problemas complejos.
 					</p>
 
-					<!-- CTA Buttons -->
 					<div class="flex flex-wrap gap-4 justify-center pt-4">
 						<a
 							href="#projects"
@@ -210,7 +179,6 @@ import "../styles/base.css";
 						</a>
 					</div>
 
-					<!-- Scroll Indicator -->
 					<div class="pt-12 animate-float">
 						<div
 							class="w-6 h-10 border-2 border-space-400 rounded-full mx-auto relative"
@@ -225,10 +193,8 @@ import "../styles/base.css";
 			</section>
 		</div>
 
-		<!-- Skills Section -->
 		<section id="skills" class="py-24 px-6">
 			<div class="container mx-auto max-w-6xl">
-				<!-- Section Header -->
 				<div class="text-center mb-16">
 					<h2 class="text-4xl md:text-5xl font-black mb-4">
 						<span
@@ -245,9 +211,7 @@ import "../styles/base.css";
 					</p>
 				</div>
 
-				<!-- Main Skills Grid -->
 				<div class="grid md:grid-cols-3 gap-8 mb-12">
-					<!-- C# Card -->
 					<div
 						class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
 					>
@@ -300,7 +264,6 @@ import "../styles/base.css";
 						</div>
 					</div>
 
-					<!-- Java Card -->
 					<div
 						class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
 					>
@@ -346,7 +309,6 @@ import "../styles/base.css";
 						</div>
 					</div>
 
-					<!-- JavaScript/Kotlin Card -->
 					<div
 						class="liquid-glass rounded-2xl p-8 hover:scale-105 transition-all duration-300 group"
 					>
@@ -391,7 +353,6 @@ import "../styles/base.css";
 					</div>
 				</div>
 
-				<!-- Additional Skills -->
 				<div class="liquid-glass rounded-2xl p-8">
 					<h4
 						class="text-2xl font-bold text-center mb-6"
@@ -433,10 +394,8 @@ import "../styles/base.css";
 			</div>
 		</section>
 
-		<!-- Projects Section -->
 		<section id="projects" class="py-24 px-6">
 			<div class="container mx-auto max-w-6xl">
-				<!-- Section Header -->
 				<div class="text-center mb-16">
 					<h2 class="text-4xl md:text-5xl font-black mb-4">
 						Proyectos <span class="text-gradient-cosmic"
@@ -448,9 +407,7 @@ import "../styles/base.css";
 					</p>
 				</div>
 
-				<!-- Projects Grid -->
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-					<!-- Project 1 -->
 					<article
 						class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
 					>
@@ -511,7 +468,6 @@ import "../styles/base.css";
 						</div>
 					</article>
 
-					<!-- Project 2 -->
 					<article
 						class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
 					>
@@ -572,7 +528,6 @@ import "../styles/base.css";
 						</div>
 					</article>
 
-					<!-- Project 3 -->
 					<article
 						class="liquid-glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group"
 					>
@@ -636,11 +591,65 @@ import "../styles/base.css";
 			</div>
 		</section>
 
-		<!-- About Section -->
+		<section id="game" class="py-24 px-6 relative">
+			<div class="container mx-auto max-w-6xl">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-black mb-4">
+						<span data-i18n="game.title1">Diversión y</span>
+						<span
+							class="text-gradient-space"
+							data-i18n="game.title2">Juegos</span
+						>
+					</h2>
+					<p class="text-xl text-gray-400" data-i18n="game.desc">
+						Un pequeño juego estilo Candy Crush desarrollado por mí.
+						¡Pruébalo!
+					</p>
+				</div>
+				<div
+					class="liquid-glass rounded-3xl p-4 md:p-8 max-w-4xl mx-auto overflow-hidden"
+				>
+					<div
+						class="aspect-[9/16] md:aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative bg-deepspace/50 mb-6"
+					>
+						<iframe
+							src="https://code-of-the-dead-challenge.vercel.app/"
+							class="absolute inset-0 w-full h-full border-0"
+							title="Code of the Dead Challenge"
+							loading="lazy"></iframe>
+					</div>
+					<div class="text-center">
+						<a
+							href="https://code-of-the-dead-challenge.vercel.app/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 liquid-glass px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform duration-300 text-sm md:text-base border border-white/20"
+						>
+							<span data-i18n="game.playFullscreen"
+								>Jugar en pantalla completa</span
+							>
+							<svg
+								class="w-5 h-5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+								></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section id="about" class="py-24 px-6">
 			<div class="container mx-auto max-w-6xl">
 				<div class="grid md:grid-cols-2 gap-12 items-start">
-					<!-- About Content -->
 					<div class="space-y-6">
 						<h2 class="text-4xl md:text-5xl font-black">
 							<span data-i18n="about.title1">Sobre</span>
@@ -693,7 +702,6 @@ import "../styles/base.css";
 							</p>
 						</div>
 
-						<!-- Stats -->
 						<div class="grid grid-cols-2 gap-4 pt-4">
 							<div
 								class="liquid-glass rounded-xl p-6 text-center cosmic-glow-purple"
@@ -728,7 +736,6 @@ import "../styles/base.css";
 						</div>
 					</div>
 
-					<!-- Experience Timeline -->
 					<div class="liquid-glass rounded-2xl p-8">
 						<h3
 							class="text-2xl font-bold mb-8"
@@ -738,13 +745,11 @@ import "../styles/base.css";
 						</h3>
 
 						<div class="space-y-8 relative pl-8">
-							<!-- Timeline Line -->
 							<div
 								class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-space-500 via-cosmic-500 to-nebula-500"
 							>
 							</div>
 
-							<!-- Experience 1 -->
 							<div class="relative">
 								<div
 									class="absolute -left-9 top-0 w-4 h-4 rounded-full bg-space-500 ring-4 ring-deepspace"
@@ -784,7 +789,6 @@ import "../styles/base.css";
 			</div>
 		</section>
 
-		<!-- Contact Section -->
 		<section id="contact" class="py-24 px-6">
 			<div class="container mx-auto max-w-4xl">
 				<div class="text-center space-y-8">
@@ -804,7 +808,6 @@ import "../styles/base.css";
 						ayudarte.
 					</p>
 
-					<!-- Contact Buttons -->
 					<div class="flex flex-wrap gap-4 justify-center pt-4">
 						<a
 							href="mailto:carloshvsa21@hotmail.com"
@@ -862,7 +865,6 @@ import "../styles/base.css";
 			</div>
 		</section>
 
-		<!-- Footer -->
 		<footer class="border-t border-white/10 py-8 px-6">
 			<div class="container mx-auto max-w-6xl">
 				<div class="text-center space-y-2">
@@ -887,7 +889,7 @@ import "../styles/base.css";
 						>
 					</p>
 					<p class="text-gray-500 text-sm">
-						© 2024 Carlos Hernández Velázquez. <span
+						© 2026 Carlos Hernández Velázquez. <span
 							data-i18n="footer.rights"
 							>Todos los derechos reservados.</span
 						>
@@ -897,193 +899,5 @@ import "../styles/base.css";
 		</footer>
 	</body>
 
-	<script>
-		import { SolarSystem } from "../scripts/solarSystem";
-		import { initSmoothScroll } from "../scripts/smoothScroll";
-
-		// Initialize Three.js Solar System
-		const canvas = document.getElementById(
-			"three-canvas",
-		) as HTMLCanvasElement;
-		if (canvas) {
-			const solarSystem = new SolarSystem(canvas);
-
-			// Initialize smooth scroll with solar system
-			const { lenis } = initSmoothScroll(solarSystem);
-
-			// Smooth scroll for navigation links
-			document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-				anchor.addEventListener("click", function (e) {
-					e.preventDefault();
-					const href = (this as HTMLAnchorElement).getAttribute(
-						"href",
-					);
-					if (href) {
-						const target = document.querySelector(href);
-						if (target) {
-							lenis.scrollTo(target as HTMLElement);
-						}
-					}
-				});
-			});
-
-			// Navbar scroll effect
-			const navbar = document.getElementById("navbar");
-			if (navbar) {
-				window.addEventListener("scroll", () => {
-					if (window.scrollY > 100) {
-						navbar.style.background = "rgba(10, 14, 39, 0.95)";
-					} else {
-						navbar.style.background = "transparent";
-					}
-				});
-			}
-
-			// Translations
-			const translations = {
-				es: {
-					"nav.skills": "Habilidades",
-					"nav.projects": "Proyectos",
-					"nav.about": "Sobre mí",
-					"nav.contact": "Contacto",
-					"hero.available": "Disponible para proyectos",
-					"hero.viewProjects": "Ver Proyectos",
-					"hero.contact": "Contactar",
-					"hero.description":
-						"Ingeniero de Software apasionado por el desarrollo móvil y web. Enfocado en convertirme en un <span class='text-space-400 font-bold'>Full-Stack Developer</span> creando soluciones creativas para problemas complejos.",
-					"skills.title1": "Habilidades",
-					"skills.title2": "Técnicas",
-					"skills.subtitle":
-						"Tecnologías y lenguajes con los que trabajo día a día",
-					"skills.card1.desc":
-						"Desarrollo de aplicaciones móviles y empresariales con .NET, Xamarin Forms y MAUI",
-					"skills.card2.desc":
-						"Desarrollo de aplicaciones móviles nativas y soluciones backend seguras",
-					"skills.card3.desc":
-						"Desarrollo moderno con JavaScript, Kotlin y Xamarin Forms",
-					"skills.comm": "Comunicación",
-					"skills.team": "Trabajo en Equipo",
-					"skills.other": "Otras Tecnologías",
-					"projects.p1.title": "App de Ventas de Seguros",
-					"projects.p1.desc":
-						"Aplicación móvil para optimizar la cotización y registro de clientes, desarrollada con Xamarin Forms y Backend .NET.",
-					"projects.p2.title": "Aplicaciones Web Razor",
-					"projects.p2.desc":
-						"Implementación de aplicaciones web con Razor Pages en .NET (5/6/8), mejorando la compatibilidad multiplataforma.",
-					"projects.p3.title": "Core Bancario - Registro",
-					"projects.p3.desc":
-						"App móvil para registro de usuarios en core de crédito, desarrollada en Java, asegurando cumplimiento normativo.",
-					"projects.viewCode": "Ver Código",
-					"projects.demo": "Demo",
-					"about.title1": "Sobre",
-					"about.title2": "Mí",
-					"about.desc1":
-						"Ingeniero de Software con una pasión particular por el desarrollo móvil. Disfruto enfrentando nuevos desafíos y encontrando soluciones creativas a problemas complejos.",
-					"about.desc2":
-						"Mi enfoque principal es convertirme en un <strong class='text-space-400'>Full-Stack Developer</strong>. Tengo experiencia colaborando en proyectos de los sectores financiero, afianzador y corporativo.",
-					"about.education": "Educación",
-					"about.degree": "Ingeniería de Software",
-					"about.uni":
-						"Universidad Autónoma del Estado de México (2018 – 2024)",
-					"about.stats.exp": "Años de Experiencia",
-					"about.stats.projects": "Proyectos Completados",
-					"exp.title": "Experiencia",
-					"exp.job1.date": "2023 - Presente",
-					"exp.job1.role": "Software Developer",
-					"exp.job1.desc":
-						"• Participación en 6 proyectos (financiero, afianzador, corporativo).<br>• Desarrollo de App móvil ventas seguros (Xamarin + .NET).<br>• Apps Web con Razor Pages (.NET 5/6/8).<br>• Proyectos bancarios en Java.",
-					"contact.title1": "Trabajemos",
-					"contact.title2": "Juntos",
-					"contact.desc":
-						"¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Contáctame y hablemos sobre cómo puedo ayudarte.",
-					"contact.email": "Enviar Email",
-					"footer.madeWith": "Diseñado y desarrollado con",
-					"footer.using": "usando Astro y Tailwind CSS",
-					"footer.rights": "Todos los derechos reservados.",
-				},
-				en: {
-					"nav.skills": "Skills",
-					"nav.projects": "Projects",
-					"nav.about": "About Me",
-					"nav.contact": "Contact",
-					"hero.available": "Available for projects",
-					"hero.viewProjects": "View Projects",
-					"hero.contact": "Contact Me",
-					"hero.description":
-						"Software Engineer with a particular passion for mobile and web development. Focused on becoming a <span class='text-space-400 font-bold'>Full-Stack Developer</span> finding creative solutions to complex problems.",
-					"skills.title1": "Technical",
-					"skills.title2": "Skills",
-					"skills.subtitle":
-						"Technologies and languages I work with every day",
-					"skills.card1.desc":
-						"Enterprise and mobile application development with .NET, Xamarin Forms and MAUI",
-					"skills.card2.desc":
-						"Native mobile application development and secure backend solutions",
-					"skills.card3.desc":
-						"Modern development with JavaScript, Kotlin and Xamarin Forms",
-					"skills.comm": "Communication",
-					"skills.team": "Teamwork",
-					"skills.other": "Other Technologies",
-					"projects.p1.title": "Insurance Sales App",
-					"projects.p1.desc":
-						"Mobile application to optimize quotation and customer registration, developed with Xamarin Forms and .NET Backend.",
-					"projects.p2.title": "Razor Web Apps",
-					"projects.p2.desc":
-						"Implementation of web applications with Razor Pages in .NET (5/6/8), improving cross-platform compatibility.",
-					"projects.p3.title": "Banking Core - Registration",
-					"projects.p3.desc":
-						"Mobile user registration app for credit core, developed in Java, ensuring regulatory compliance.",
-					"projects.viewCode": "View Code",
-					"projects.demo": "Demo",
-					"about.title1": "About",
-					"about.title2": "Me",
-					"about.desc1":
-						"Software Engineer with a particular passion for mobile development. I enjoy facing new challenges and finding creative solutions to complex problems.",
-					"about.desc2":
-						"My main focus is to become a <strong class='text-space-400'>Full-Stack Developer</strong>. I have experience collaborating on projects in the financial, insurance, and corporate sectors.",
-					"about.education": "Education",
-					"about.degree": "Software Engineering",
-					"about.uni":
-						"Autonomous University of Mexico State (2018 – 2024)",
-					"about.stats.exp": "Years of Experience",
-					"about.stats.projects": "Completed Projects",
-					"exp.title": "Experience",
-					"exp.job1.date": "2023 - Present",
-					"exp.job1.role": "Software Developer",
-					"exp.job1.desc":
-						"• Participated in 6 projects (financial, insurance, corporate).<br>• Developed Insurance sales mobile app (Xamarin + .NET).<br>• Web apps with Razor Pages (.NET 5/6/8).<br>• Banking projects in Java.",
-					"contact.title1": "Let's Work",
-					"contact.title2": "Together",
-					"contact.desc":
-						"Have a project in mind? I'd love to hear about it. Contact me and let's talk about how I can help you.",
-					"contact.email": "Send Email",
-					"footer.madeWith": "Designed and developed with",
-					"footer.using": "using Astro and Tailwind CSS",
-					"footer.rights": "All rights reserved.",
-				},
-			};
-
-			// Language toggle logic
-			let currentLang = "es";
-			const langToggle = document.getElementById("lang-toggle");
-			const langText = document.getElementById("lang-text");
-
-			if (langToggle && langText) {
-				langToggle.addEventListener("click", () => {
-					currentLang = currentLang === "es" ? "en" : "es";
-					langText.textContent = currentLang.toUpperCase();
-					updateLanguage(currentLang);
-				});
-			}
-
-			function updateLanguage(lang) {
-				document.querySelectorAll("[data-i18n]").forEach((element) => {
-					const key = element.getAttribute("data-i18n");
-					if (translations[lang][key]) {
-						element.innerHTML = translations[lang][key];
-					}
-				});
-			}
-		}
-	</script>
+	<script src="../scripts/home.ts"></script>
 </html>
