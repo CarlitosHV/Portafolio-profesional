@@ -1,5 +1,6 @@
 services:
-  app:
+  portfolio-car:
+    container_name: portfolio-car
     build:
       context: .
       dockerfile: Dockerfile
